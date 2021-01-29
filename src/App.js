@@ -9,7 +9,7 @@ import JobSearchForm from "./JobSearchForm";
 function App() {
   const [params, setParams] = useState({});
   const [page, setPage] = useState(1);
-  const { jobs, loading, error, hasNexPage } = useFetchJobs(params, page);
+  const { jobs, loading, error, hasNextPage } = useFetchJobs(params, page);
 
   const handleParamChange = (e) => {
     const param = e.target.name;
@@ -26,7 +26,7 @@ function App() {
         <i className="fab fa-github"></i> Github Jobs
       </h1>
       <JobSearchForm params={params} onParamChange={handleParamChange} />
-      <JobPagination page={page} setPage={setPage} hasNexPage={hasNexPage} />
+      <JobPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
       {loading && (
         <div className="text-center">
           <Spinner
@@ -46,7 +46,7 @@ function App() {
       {jobs.map((job) => (
         <JobCard key={job.id} job={job} />
       ))}
-      <JobPagination page={page} setPage={setPage} hasNexPage={hasNexPage} />
+      <JobPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
     </Container>
   );
 }
